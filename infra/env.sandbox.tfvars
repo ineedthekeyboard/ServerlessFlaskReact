@@ -1,0 +1,7 @@
+environment              = "sandbox"
+aws_region               = "us-east-2"
+tfstate_bucket           = "example-terraform-bucket"
+tfstate_bucket_region    = "eu-west-2"
+serverless_deploy_bucket = "example-serverless-deploy-bucket"
+project_name             = "flask"
+stage_name               = "sandbox"
