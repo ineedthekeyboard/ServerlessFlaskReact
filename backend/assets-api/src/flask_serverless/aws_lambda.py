@@ -1,3 +1,4 @@
+# Reference https://github.com/alexmilowski/flask-serverless
 from flask import Response
 from base64 import b64decode, b64encode
 from werkzeug.http import parse_options_header

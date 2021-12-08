@@ -11,20 +11,27 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import axios from 'axios'
 
-import DatePicker from "react-datepicker";
+import DatePicker from 'react-datepicker'
 // import calendar style 
 // You can customize style by copying asset folder.
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css'
 
 import img from './testimg.jpg'
 import './Timeline.scss'
 
 export default function TimelinePage() {
+    useEffect(() => {
+        let getTestData = async () => {
+            let test = await axios.post('https://gqpv8i4fuk.execute-api.us-east-1.amazonaws.com/Stage/asset-api/echo',{'test':'data'})
+            console.log(test)
+        }
+        getTestData()
+    },[])
     return (
         <>
             <Navbar className="timeline-nav" fixed="top" bg="dark" variant="dark">
                 <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                    <Nav className="mr-auto">
+                <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
                 </Nav>
                 <ButtonToolbar>
@@ -81,8 +88,8 @@ function CustTooltip ({children, text}) {
 
 function BaseFilter({btnIcon, children, className, tooltipText}) {
     let uuid = uuidv4()
-    let baseClass = "filter-dropdown-container"
-    let newClassName = baseClass + " " + className 
+    let baseClass = 'filter-dropdown-container'
+    let newClassName = baseClass + ' ' + className 
 
     const [showMenu, setShowMenu] = useState(false)
 
@@ -113,8 +120,8 @@ function BaseFilter({btnIcon, children, className, tooltipText}) {
 }
 
 function TimeFilters () {
-    const [startDate, setStartDate] = useState(new Date("2014/02/08"));
-    const [endDate, setEndDate] = useState(new Date("2014/02/10"));
+    const [startDate, setStartDate] = useState(new Date('2014/02/08'))
+    const [endDate, setEndDate] = useState(new Date('2014/02/10'))
     return (
         <BaseFilter className="time-filters" btnIcon={<i class="material-icons-sharp"> schedule </i>}>
             <Row noGutters={true}>
@@ -126,7 +133,7 @@ function TimeFilters () {
                         selectsStart
                         startDate={startDate}
                         endDate={endDate}
-                        />
+                    />
                 </Col>
                 <Col>
                     <h6>End</h6>
@@ -189,7 +196,7 @@ function IntelligentFilters () {
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r && 0x3 | 0x8);
-      return v.toString(16);
-    });
+        var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r && 0x3 | 0x8)
+        return v.toString(16)
+    })
 }
