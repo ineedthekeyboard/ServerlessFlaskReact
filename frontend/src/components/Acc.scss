@@ -1,0 +1,29 @@
+$main-color: #33FF00;
+
+.acc-page {
+    .jumbotron {
+        border: 1px solid $main-color;
+        background-color: transparent;
+        padding: 2rem;
+    }
+    h4:not(:first-child) {
+        margin-top: 24px;
+    }
+
+    .btn-group-toggle label {
+        font-size: 1.25rem;
+        padding: 8px 16px;
+    }
+    .btn-toolbar {
+        & > button, & > div {
+            margin: 5px;
+        }
+    }
+    .center {
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-icon {
+        font-size: 6rem;
+    }
+}

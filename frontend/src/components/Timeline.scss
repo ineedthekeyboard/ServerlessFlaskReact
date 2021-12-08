@@ -1,0 +1,50 @@
+$main-color: #33FF00;
+
+
+/*// Main timeline page scss*/
+.timeline-nav.navbar {
+    & > .btn-toolbar {
+        & > button {
+            margin: .5rem;
+        }
+    }
+}
+
+.timeline-page {
+    margin-top: 75px;
+}
+.gallery-container {
+    .img {
+        width:300px;
+        max-width: 250px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+/*// CSS to go into base filter*/
+.filter-dropdown-container {
+    margin: 8px;
+    .dropdown-toggle.btn i.material-icons-sharp {
+        display: block;
+    }
+    .dropdown-toggle::after {
+        display: none;
+    }
+    .filter-dropdown-menu {
+        width: 500px;
+        padding: 1rem;
+        margin: .250rem 0 0;
+        background-color: #191716;
+        border: 1px solid $main-color;
+        color: $main-color;
+    }
+}
+
+/*// CSS For timeline filter*/
+.time-filters {
+    .btn-toolbar {
+        & > button {
+            margin: .5rem;
+        }
+    }
+}
