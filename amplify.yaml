@@ -1,5 +1,11 @@
 version: 1
 backend:
+  env:
+    variables:
+      AMPLIFY_USERPOOL_ID: us-west-2_xXvqUfIcX
+      AMPLIFY_WEBCLIENT_ID: 3dhjbv1ts48lqj9ej4d66burse
+      AMPLIFY_NATIVECLIENT_ID: 55ntfgv9e2ud2nqcb24ergbjv3
+      AMPLIFY_IDENTITYPOOL_ID:
   phases:
     build:
       commands:
