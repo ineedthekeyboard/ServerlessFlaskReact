@@ -3,9 +3,9 @@ version = 0.1
 [default.deploy]
 [default.deploy.parameters]
 stack_name = "asset-api"
-s3_bucket = "serverless-deploy-bucket"
-s3_prefix = "asset-api"
-region = "us-east-1"
-profile = "aws.aec.dev.ryan"
+s3_bucket = "ampflask-serverless-deploy-bucket"
+s3_prefix = "uiapi"
+region = "us-west-2"
+profile = "ryan_sandbox"
 capabilities = "CAPABILITY_IAM"
 image_repositories = []

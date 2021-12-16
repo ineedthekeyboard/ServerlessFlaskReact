@@ -30,7 +30,7 @@ def add_headers(environ, headers, block_headers=True):
             environ[wsgi_name] = str(headers[header])
 
 
-def aws_invoke(app, gateway_input, server_name='localhost', server_port='5000', http_protocol='HTTP/1.1', TLS=True, block_headers=True):
+def aws_invoke(app, gateway_input, server_name='localhost', server_port='5000', http_protocol='HTTP/1.1', TLS=True, block_headers=True, cors=False):
     headers = CaseInsensitiveDict(gateway_input.get('headers', {}))
     requestContext = gateway_input.get('requestContext')
     queryStringParameters = gateway_input.get('queryStringParameters', {})
@@ -73,8 +73,15 @@ def aws_invoke(app, gateway_input, server_name='localhost', server_port='5000', 
 
     response = Response.from_app(app.wsgi_app, environ)
 
+    headers_to_send = dict(response.headers)
+    if cors:
+        headers_to_send["Access-Control-Allow-Headers"] = "*"
+        headers_to_send["Access-Control-Allow-Origin"] = "*"
+        headers_to_send["Access-Control-Allow-Credentials"] = "true"
+        headers_to_send["Access-Control-Allow-Methods"] = "DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT"
+
     gateway_output = {
-        'headers': dict(response.headers),
+        'headers': headers_to_send,
         'statusCode': response.status_code,
     }
 

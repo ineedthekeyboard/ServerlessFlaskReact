@@ -5,6 +5,6 @@ version = 0.1
 stack_name = "asset-api"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1iixm8rchtcan"
 s3_prefix = "asset-api"
-region = "us-east-1"
+region = "us-west-2"
 capabilities = "CAPABILITY_IAM"
 image_repositories = []

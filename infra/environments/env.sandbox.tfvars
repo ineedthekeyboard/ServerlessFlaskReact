@@ -1,5 +1,5 @@
 environment              = "sandbox"
-aws_region               = "us-east-2"
+aws_region               = "us-west-2"
 aws_profile_cred_name    = "ryan_sandbox"
 aws_creds_file_path      = "/Users/rcarlton/.aws/config"
 tfstate_bucket           = "amplifyflask-terraform-bucket"
