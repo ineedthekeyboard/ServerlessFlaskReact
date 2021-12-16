@@ -1,16 +1,29 @@
 terraform {
-  backend "s3" {}
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 3.27"
+    }
+  }
+  required_version = ">= 0.14.9"
+}
+
+terraform {
+  backend "s3" {
+  }
 }
 
 provider "aws" {
   region = var.aws_region
+  shared_credentials_file = var.aws_creds_file_path
+  profile                 = var.aws_profile_cred_name
 }
 
 data "aws_caller_identity" "current" {}
 
 module "cognito" {
   source       = "./cognito"
-  url          = module.api_gateway.flask_url
+#  url          = module.api_gateway.flask_url
   project_name = var.project_name
 }
 

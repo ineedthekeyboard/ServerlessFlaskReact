@@ -25,3 +25,11 @@ variable "project_name" {
 variable "stage_name" {
   type = string
 }
+
+variable "aws_profile_cred_name" {
+  type = string
+}
+
+variable "aws_creds_file_path" {
+  type = string
+}

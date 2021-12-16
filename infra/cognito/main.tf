@@ -46,12 +46,13 @@ resource "aws_cognito_user_pool_client" "client" {
   prevent_user_existence_errors        = "ENABLED"
   supported_identity_providers         = ["COGNITO"]
   # TODO: What if prod is on a custom domain?
-  callback_urls = [join("", [var.url, "/loggedin"])]
-  logout_urls   = [var.url]
+#  callback_urls = [join("", [var.url, "/loggedin"])]
+#  logout_urls   = [var.url]
 }
 
 
 resource "aws_cognito_user_pool_domain" "main" {
   domain       = "martincampbell"
   user_pool_id = aws_cognito_user_pool.user_pool.id
+
 }
