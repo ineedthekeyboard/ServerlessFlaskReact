@@ -33,3 +33,7 @@ variable "aws_profile_cred_name" {
 variable "aws_creds_file_path" {
   type = string
 }
+
+variable "root_domain" {
+  type = string
+}
