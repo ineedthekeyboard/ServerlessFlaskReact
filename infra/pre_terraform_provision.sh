@@ -43,9 +43,8 @@ aws s3 mb --profile "$aws_profile" --region "$aws_region" s3://"$bucket_name"
 echo "Setting up principle role for terraform"
 aws iam create-role --profile "$aws_profile" --region "$aws_region" --role-name terraform_bucket_role --assume-role-policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":"ec2.amazonaws.com"},"Action":"sts:AssumeRole"}]}'
 
-#echo "Setting up write perm for terraform role"
+echo "Setting up write perm for terraform role"
 iam_policy_json='{  "Version": "2012-10-17",  "Statement": [    {      "Effect": "Allow",      "Action": "s3:ListBucket",      "Resource": "arn:aws:s3:::'"$bucket_name"'"    },    {      "Effect": "Allow",      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],      "Resource": "arn:aws:s3:::'"$bucket_name"'"    }  ]}'
-echo "$iam_policy_json"
 aws iam put-role-policy --profile "$aws_profile" --region "$aws_region" --role-name terraform_bucket_role --policy-name terraform_bucket_write_policy --policy-document "$iam_policy_json"
 
 echo "Setting up terraform now"

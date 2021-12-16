@@ -23,7 +23,7 @@ data "aws_caller_identity" "current" {}
 
 module "cognito" {
   source       = "./cognito"
-#  url          = module.api_gateway.flask_url
+  url          = var.root_domain
   project_name = var.project_name
 }
 

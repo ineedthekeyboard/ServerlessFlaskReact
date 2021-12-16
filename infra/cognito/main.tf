@@ -1,5 +1,5 @@
 resource "aws_cognito_user_pool" "user_pool" {
-  name                     = "example-pool"
+  name                     = "${var.project_name}-pool"
   username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
   username_configuration {
@@ -36,23 +36,36 @@ resource "aws_cognito_user_pool" "user_pool" {
   }
 }
 
-resource "aws_cognito_user_pool_client" "client" {
-  name                                 = "example-client"
+resource "aws_cognito_user_pool_client" "web_client" {
+  name                                 = "${var.project_name}-web-client"
   user_pool_id                         = aws_cognito_user_pool.user_pool.id
-  generate_secret                      = true
+  generate_secret                      = false
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows                  = ["code"]
   allowed_oauth_scopes                 = ["email", "openid"]
   prevent_user_existence_errors        = "ENABLED"
   supported_identity_providers         = ["COGNITO"]
   # TODO: What if prod is on a custom domain?
-#  callback_urls = [join("", [var.url, "/loggedin"])]
-#  logout_urls   = [var.url]
+  callback_urls = [join("", [var.url, "/loggedin"])]
+  logout_urls   = [var.url]
 }
 
+resource "aws_cognito_user_pool_client" "native_client" {
+  name                                 = "${var.project_name}-native-client"
+  user_pool_id                         = aws_cognito_user_pool.user_pool.id
+  generate_secret                      = true
+  allowed_oauth_flows_user_pool_client = true
+  allowed_oauth_flows                  = ["code", "implicit"]
+  allowed_oauth_scopes                 = ["email", "openid"]
+  prevent_user_existence_errors        = "ENABLED"
+  supported_identity_providers         = ["COGNITO"]
+  # TODO: What if prod is on a custom domain?
+  callback_urls                        = [join("", [var.url, "/loggedin"])]
+  logout_urls                          = [var.url]
+}
 
 resource "aws_cognito_user_pool_domain" "main" {
-  domain       = "martincampbell"
+  domain       = "${var.project_name}"
   user_pool_id = aws_cognito_user_pool.user_pool.id
 
 }

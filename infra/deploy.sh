@@ -29,8 +29,9 @@ while test $# -gt 0; do
 
   if [ "$to_plan" = 'Y' ] || [ "$to_plan" = 'y' ]
   then
-    echo "doing terraform plan on: $environment environment.. (no lock here, add lock and dynamo eventually)"
+    echo "Doing terraform plan on: $environment environment...(no lock here, add lock and dynamo eventually)"
     terraform plan -lock=false -input=false -var-file=./environments/env."$environment".tfvars
   else
-    echo "Terraform apply not implemented yet."
+    echo "Doing terraform apply on: $environment environment"
+    terraform apply -lock=false -input=false -var-file=./environments/env."$environment".tfvars
   fi
