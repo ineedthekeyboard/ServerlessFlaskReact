@@ -13,6 +13,7 @@ applications:
           AMPLIFY_MONOREPO_APP_ROOT: frontend
           AMPLIFY_DIFF_DEPLOY: false
           USER_BRANCH: staging
+          TEST: test1234
       phases:
         preBuild:
           commands:
