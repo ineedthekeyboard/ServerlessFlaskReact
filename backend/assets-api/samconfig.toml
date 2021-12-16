@@ -3,7 +3,7 @@ version = 0.1
 [default.deploy]
 [default.deploy.parameters]
 stack_name = "asset-api"
-s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-vum40fjhgzwf"
+s3_bucket = "serverless-deploy-bucket"
 s3_prefix = "asset-api"
 region = "us-east-1"
 profile = "aws.aec.dev.ryan"
