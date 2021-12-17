@@ -36,12 +36,36 @@ resource "aws_cognito_user_pool" "user_pool" {
   }
 }
 
+resource "aws_cognito_identity_pool" "main" {
+  identity_pool_name               = "${var.project_name}-identity-pool"
+  allow_unauthenticated_identities = false
+  allow_classic_flow               = false
+
+  cognito_identity_providers {
+    client_id               = aws_cognito_user_pool_client.web_client.id
+    provider_name           = aws_cognito_user_pool.user_pool.endpoint
+    server_side_token_check = true
+  }
+  cognito_identity_providers {
+    client_id               = aws_cognito_user_pool_client.native_client.id
+    provider_name           = aws_cognito_user_pool.user_pool.endpoint
+    server_side_token_check = true
+  }
+#  supported_login_providers = {
+#    "graph.facebook.com"  = "7346241598935552"
+#    "accounts.google.com" = "123456789012.apps.googleusercontent.com"
+#  }
+
+#  saml_provider_arns           = [aws_iam_saml_provider.default.arn]
+#  openid_connect_provider_arns = ["arn:aws:iam::123456789012:oidc-provider/id.example.com"]
+}
+
 resource "aws_cognito_user_pool_client" "web_client" {
   name                                 = "${var.project_name}-web-client"
   user_pool_id                         = aws_cognito_user_pool.user_pool.id
   generate_secret                      = false
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_flows                  = ["code"]
+  allowed_oauth_flows                  = ["code", "implicit"]
   allowed_oauth_scopes                 = ["email", "openid"]
   prevent_user_existence_errors        = "ENABLED"
   supported_identity_providers         = ["COGNITO"]
@@ -56,6 +80,7 @@ resource "aws_cognito_user_pool_client" "native_client" {
   generate_secret                      = true
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows                  = ["code", "implicit"]
+  explicit_auth_flows                  = ["ADMIN_NO_SRP_AUTH"]
   allowed_oauth_scopes                 = ["email", "openid"]
   prevent_user_existence_errors        = "ENABLED"
   supported_identity_providers         = ["COGNITO"]
@@ -65,7 +90,72 @@ resource "aws_cognito_user_pool_client" "native_client" {
 }
 
 resource "aws_cognito_user_pool_domain" "main" {
-  domain       = "${var.project_name}"
+  domain       = var.project_name
   user_pool_id = aws_cognito_user_pool.user_pool.id
 
+}
+
+resource "aws_cognito_identity_pool_roles_attachment" "idp_roles_attachment" {
+  identity_pool_id = aws_cognito_identity_pool.main.id
+
+  roles = {
+    authenticated   = aws_iam_role.auth_iam_role.arn
+    unauthenticated = aws_iam_role.unauth_iam_role.arn
+  }
+}
+
+resource "aws_iam_role" "auth_iam_role" {
+  name               = "auth_iam_role"
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+         {
+              "Action": "sts:AssumeRole",
+              "Principal": {
+                   "Federated": "cognito-identity.amazonaws.com"
+              },
+              "Effect": "Allow",
+              "Sid": ""
+         }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_role" "unauth_iam_role" {
+  name               = "unauth_iam_role"
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+         {
+              "Action": "sts:AssumeRole",
+              "Principal": {
+                   "Federated": "cognito-identity.amazonaws.com"
+              },
+              "Effect": "Allow",
+              "Sid": ""
+         }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "web_iam_unauth_role_policy" {
+  name   = "web_iam_unauth_role_policy"
+  role   = aws_iam_role.unauth_iam_role.id
+  policy = <<EOF
+{
+"Version": "2012-10-17",
+"Statement": [
+    {
+        "Sid": "",
+        "Action": "*",
+        "Effect": "Deny",
+        "Resource": "*"
+    }
+  ]
+}
+EOF
 }
