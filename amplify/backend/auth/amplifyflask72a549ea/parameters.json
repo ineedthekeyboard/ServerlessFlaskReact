@@ -1,6 +1,6 @@
 {
-  "authSelections": "userPoolOnly",
-  "resourceName": "amplifyflask",
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "amplifyflask72a549ea",
   "serviceType": "imported",
   "region": "us-west-2",
   "usernameAttributes": [

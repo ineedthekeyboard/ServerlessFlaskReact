@@ -1,31 +1,38 @@
 {
-    "staging": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-amplifyflask-staging-180232-authRole",
-            "UnauthRoleArn": "arn:aws:iam::610736706458:role/amplify-amplifyflask-staging-180232-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::610736706458:role/amplify-amplifyflask-staging-180232-authRole",
-            "Region": "us-west-2",
-            "DeploymentBucketName": "amplify-amplifyflask-staging-180232-deployment",
-            "UnauthRoleName": "amplify-amplifyflask-staging-180232-unauthRole",
-            "StackName": "amplify-amplifyflask-staging-180232",
-            "StackId": "arn:aws:cloudformation:us-west-2:610736706458:stack/amplify-amplifyflask-staging-180232/57e0fd60-5e9a-11ec-8ca4-0aa349fb0535",
-            "AmplifyAppId": "d29f9x7mzyg72l"
-        },
-        "categories": {
-            "auth": {
-                "amplifyflask": {
-                    "userPoolId": "us-west-2_xXvqUfIcX",
-                    "userPoolName": "amplifyflask-pool",
-                    "webClientId": "3dhjbv1ts48lqj9ej4d66burse",
-                    "nativeClientId": "55ntfgv9e2ud2nqcb24ergbjv3"
-                }
-            },
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "d29f9x7mzyg72l",
-                    "type": "cicd"
-                }
-            }
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyflask-staging-180232-authRole",
+      "UnauthRoleArn": "arn:aws:iam::610736706458:role/amplify-amplifyflask-staging-180232-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::610736706458:role/amplify-amplifyflask-staging-180232-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-amplifyflask-staging-180232-deployment",
+      "UnauthRoleName": "amplify-amplifyflask-staging-180232-unauthRole",
+      "StackName": "amplify-amplifyflask-staging-180232",
+      "StackId": "arn:aws:cloudformation:us-west-2:610736706458:stack/amplify-amplifyflask-staging-180232/57e0fd60-5e9a-11ec-8ca4-0aa349fb0535",
+      "AmplifyAppId": "d29f9x7mzyg72l"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d29f9x7mzyg72l",
+          "type": "cicd"
         }
+      },
+      "auth": {
+        "amplifyflask72a549ea": {
+          "userPoolId": "us-west-2_xXvqUfIcX",
+          "userPoolName": "amplifyflask-pool",
+          "webClientId": "3dhjbv1ts48lqj9ej4d66burse",
+          "nativeClientId": "55ntfgv9e2ud2nqcb24ergbjv3",
+          "identityPoolId": "us-west-2:e5901e39-06dc-42ba-b418-7ee6bb58623f",
+          "identityPoolName": "amplifyflask-identity-pool",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::610736706458:role/auth_iam_role",
+          "authRoleName": "auth_iam_role",
+          "unauthRoleArn": "arn:aws:iam::610736706458:role/unauth_iam_role",
+          "unauthRoleName": "unauth_iam_role"
+        }
+      }
     }
+  }
 }

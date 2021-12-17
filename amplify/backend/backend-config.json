@@ -1,6 +1,6 @@
 {
   "auth": {
-    "amplifyflask": {
+    "amplifyflask72a549ea": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
@@ -14,5 +14,6 @@
       "type": "cicd",
       "lastPushTimeStamp": "2021-12-16T18:38:26.947Z"
     }
-  }
+  },
+  "function": {}
 }
