@@ -1,0 +1,39 @@
+version: 1
+
+frontend:
+  env:
+    variables:
+      AMPLIFY_MONOREPO_APP_ROOT: frontend
+      AMPLIFY_DIFF_DEPLOY: false
+      USER_BRANCH: staging
+      TEST: test1234
+  phases:
+    preBuild:
+      commands:
+        - npm install
+        - cp aws-exports.js src/aws-exports.js
+        - echo $(ls src)
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+
+backend:
+  env:
+    variables:
+      AMPLIFY_USERPOOL_ID: us-west-2_xXvqUfIcX
+      AMPLIFY_WEBCLIENT_ID: 3dhjbv1ts48lqj9ej4d66burse
+      AMPLIFY_NATIVECLIENT_ID: 55ntfgv9e2ud2nqcb24ergbjv3
+      AMPLIFY_IDENTITYPOOL_ID: us-west-2:e5901e39-06dc-42ba-b418-7ee6bb58623f
+  phases:
+    build:
+      commands:
+        - update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.8 11
+        - /usr/local/bin/pip3.8 install --user pipenv
+        - amplifyPush --simple
