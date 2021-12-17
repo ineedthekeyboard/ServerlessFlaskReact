@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/uiapi": {
+      "name": "/uiapi",
+      "lambdaFunction": "uiApiLambda",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

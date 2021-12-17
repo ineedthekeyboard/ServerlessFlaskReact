@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-amplifyflask-staging-180232-unauthRole",
       "StackName": "amplify-amplifyflask-staging-180232",
       "StackId": "arn:aws:cloudformation:us-west-2:610736706458:stack/amplify-amplifyflask-staging-180232/57e0fd60-5e9a-11ec-8ca4-0aa349fb0535",
-      "AmplifyAppId": "d29f9x7mzyg72l"
+      "AmplifyAppId": "d29f9x7mzyg72l",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplifyflask-staging-180232-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "hosting": {
@@ -19,7 +20,7 @@
         }
       },
       "auth": {
-        "amplifyflask72a549ea": {
+        "amplifyFlaskAuth": {
           "userPoolId": "us-west-2_xXvqUfIcX",
           "userPoolName": "amplifyflask-pool",
           "webClientId": "3dhjbv1ts48lqj9ej4d66burse",
@@ -31,6 +32,12 @@
           "authRoleName": "auth_iam_role",
           "unauthRoleArn": "arn:aws:iam::610736706458:role/unauth_iam_role",
           "unauthRoleName": "unauth_iam_role"
+        }
+      },
+      "function": {
+        "uiApiLambda": {
+          "deploymentBucketName": "amplify-amplifyflask-staging-180232-deployment",
+          "s3Key": "amplify-builds/uiApiLambda-74774678714d386a5447-build.zip"
         }
       }
     }

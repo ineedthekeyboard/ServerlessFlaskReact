@@ -1,6 +1,6 @@
 {
   "auth": {
-    "amplifyflask72a549ea": {
+    "amplifyFlaskAuth": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
@@ -15,5 +15,27 @@
       "lastPushTimeStamp": "2021-12-16T18:38:26.947Z"
     }
   },
-  "function": {}
+  "function": {
+    "uiApiLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "api": {
+    "uiAPI": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "uiApiLambda",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  }
 }

@@ -1,6 +1,6 @@
 {
   "authSelections": "identityPoolAndUserPool",
-  "resourceName": "amplifyflask72a549ea",
+  "resourceName": "amplifyFlaskAuth",
   "serviceType": "imported",
   "region": "us-west-2",
   "usernameAttributes": [
