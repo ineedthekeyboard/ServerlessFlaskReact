@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "lint": "eslint '**/*.js'",
-    "build": "react-scripts build",
+    "build": "cp aws-exports.js src/aws-exports.js && react-scripts build",
     "provision": "aws cloudformation deploy --template-file stack.yaml --stack-name hosting-bucket --parameter-overrides BucketName=hosted-frontend-prod",
     "upload": "react-scripts build && aws s3 sync build/ s3://hosted-frontend-prod --delete",
     "test": "react-scripts test",
