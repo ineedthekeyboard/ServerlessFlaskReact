@@ -1,5 +1,13 @@
 {
-  "auth": {},
+  "auth": {
+    "amplifyflask79103271": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
   "hosting": {
     "amplifyhosting": {
       "service": "amplifyhosting",

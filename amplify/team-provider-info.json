@@ -24,6 +24,21 @@
           "deploymentBucketName": "amplify-amplifyflask-staging-180232-deployment",
           "s3Key": "amplify-builds/uiApiLambda-636f4457345047704d52-build.zip"
         }
+      },
+      "auth": {
+        "amplifyflask79103271": {
+          "userPoolId": "us-west-2_xXvqUfIcX",
+          "userPoolName": "amplifyflask-pool",
+          "webClientId": "3dhjbv1ts48lqj9ej4d66burse",
+          "nativeClientId": "55ntfgv9e2ud2nqcb24ergbjv3",
+          "identityPoolId": "us-west-2:e5901e39-06dc-42ba-b418-7ee6bb58623f",
+          "identityPoolName": "amplifyflask-identity-pool",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::610736706458:role/auth_iam_role",
+          "authRoleName": "auth_iam_role",
+          "unauthRoleArn": "arn:aws:iam::610736706458:role/unauth_iam_role",
+          "unauthRoleName": "unauth_iam_role"
+        }
       }
     }
   }
