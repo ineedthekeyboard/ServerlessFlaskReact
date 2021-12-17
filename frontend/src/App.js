@@ -22,11 +22,11 @@ function App() {
         console.log(otherTest)
     }
     let testSubroute = async() => {
-        let params = {
-            headers: {
-                'Authorization': `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
-            }
-        }
+        // let params = {
+        //     headers: {
+        //         'Authorization': `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+        //     }
+        // }
         let otherTest = await API.get('uiAPI', '/uiapi/', {})
         console.log(otherTest)
     }
