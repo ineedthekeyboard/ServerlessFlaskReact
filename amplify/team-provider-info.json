@@ -37,7 +37,7 @@
       "function": {
         "uiApiLambda": {
           "deploymentBucketName": "amplify-amplifyflask-staging-180232-deployment",
-          "s3Key": "amplify-builds/uiApiLambda-74774678714d386a5447-build.zip"
+          "s3Key": "amplify-builds/uiApiLambda-636f4457345047704d52-build.zip"
         }
       }
     }
