@@ -23,7 +23,8 @@ applications:
       phases:
         preBuild:
           commands:
-            - npm install
+            - nvm install 14
+            - npm ci
             - cp aws-exports.js src/aws-exports.js
         build:
           commands:

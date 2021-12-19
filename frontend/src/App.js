@@ -1,16 +1,12 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.scss'
-import AccPage from './components/Acc'
-import TimelinePage from './components/Timeline'
-import Amplify, {Auth, API} from 'aws-amplify'
-import awsExports from './aws-exports'
+// import TimelinePage from './components/Timeline'
+import {Amplify, Auth, API} from 'aws-amplify'
 import {withAuthenticator} from '@aws-amplify/ui-react'
-// import '@aws-amplify/ui/dist/style.css'
+import awsmobile from './aws-exports'
 import './amplifyUIStyles.css'
 
-Amplify.configure(awsExports)
-
+Amplify.configure(awsmobile)
 
 function App() {
     let testRootRoute = async() => {
@@ -33,13 +29,12 @@ function App() {
     }
     return (
         <div className="App">
-            <TimelinePage/>
+            <p>test</p>
             <button onClick={testRootRoute}>Test Root Call</button>
             <button onClick={testSubroute}>Test Root Call</button>
-            {/*<AccPage/> */}
         </div>
-    
     )
 }
 
 export default withAuthenticator(App)
+// export default App
