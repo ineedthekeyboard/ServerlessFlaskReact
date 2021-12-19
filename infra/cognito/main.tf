@@ -117,7 +117,15 @@ resource "aws_iam_role" "auth_iam_role" {
               },
               "Effect": "Allow",
               "Sid": ""
-         }
+         },
+          {
+              "Sid": "",
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              },
+              "Action": "sts:AssumeRoleWithWebIdentity"
+          }
     ]
 }
 EOF
@@ -153,6 +161,23 @@ resource "aws_iam_role_policy" "web_iam_unauth_role_policy" {
         "Sid": "",
         "Action": "*",
         "Effect": "Deny",
+        "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+resource "aws_iam_role_policy" "api_iam_auth_all_policy" {
+  name   = "api_iam_auth_all_policy"
+  role   = aws_iam_role.auth_iam_role.id
+  policy = <<EOF
+{
+"Version": "2012-10-17",
+"Statement": [
+    {
+        "Sid": "",
+        "Action": "execute-api:Invoke",
+        "Effect": "Allow",
         "Resource": "*"
     }
   ]
