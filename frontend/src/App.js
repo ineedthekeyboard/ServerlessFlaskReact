@@ -10,20 +10,15 @@ Amplify.configure(awsmobile)
 
 function App() {
     let testRootRoute = async() => {
-        let params = {
-            headers: {
-                'Authorization': `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
-            }
-        }
-        let otherTest = await API.get('uiAPI', '/uiapi', params)
+        // let params = {
+        //   headers: {
+        //     'Authorization': `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+        //   }
+        // }
+        let otherTest = await API.get('uiAPI', '/uiapi', {})
         console.log(otherTest)
     }
     let testSubroute = async() => {
-        // let params = {
-        //     headers: {
-        //         'Authorization': `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
-        //     }
-        // }
         let otherTest = await API.get('uiAPI', '/uiapi/', {})
         console.log(otherTest)
     }
